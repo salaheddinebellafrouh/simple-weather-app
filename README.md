@@ -162,7 +162,7 @@ For backend scalability, we would transition to a microservices architecture wit
 
 ---
 
-### 📊 Results
+###  Results
 
 | API Endpoint    | Response Time (No Cache) | Response Time (With Redis) | Improvement    |
 |-----------------|--------------------------|-----------------------------|----------------|
@@ -172,7 +172,7 @@ Redis caching significantly reduced response times from ~300ms to ~13ms on repea
 
 ---
 
-### 🔍 Screenshots
+### Screenshots
 
 #### Without Redis:
 
