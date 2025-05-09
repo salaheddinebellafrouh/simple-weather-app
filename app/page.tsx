@@ -13,20 +13,13 @@ export default async function Home() {
             Weather Forecast
           </h1>
           <p className="text-muted-foreground">
-            Powered by OpenWeather API with Redis caching for optimal performance
+            Weather App By Salah Eddine Bellafrouh
           </p>
         </header>
         
         <WeatherContainer initialWeatherData={initialWeatherData} />
         
-        <footer className="mt-16 text-center text-sm text-muted-foreground">
-          <p>
-            This application demonstrates server-side rendering with efficient Redis caching.
-          </p>
-          <p className="mt-1">
-            Weather data is cached for 30 minutes, while location data is cached for 24 hours.
-          </p>
-        </footer>
+      
       </div>
     </main>
   );
