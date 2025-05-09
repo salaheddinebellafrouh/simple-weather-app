@@ -186,3 +186,34 @@ To scale this application for millions of daily users, we would implement a mult
    - Check running containers: `docker-compose ps`
    - View logs: `docker-compose logs`
    - Restart services: `docker-compose restart` 
+
+## API Performance Benchmark
+
+### 🧪 Testing Methodology
+
+- Tool: **Chrome DevTools** → *Network tab*
+- Scenario: Fetched `/api/weather?lat=51.5074&lon=-0.1278` multiple times
+- Comparison between performance **with** and **without** Redis caching
+- Each value below is an average of 3–4 identical API calls
+
+---
+
+### 📊 Results
+
+| API Endpoint    | Response Time (No Cache) | Response Time (With Redis) | Improvement    |
+|-----------------|--------------------------|-----------------------------|----------------|
+| `/api/weather`  | ~314 ms                  | ~13 ms                      | ~95.8% faster  |
+
+Redis caching significantly reduced response times from ~300ms to ~13ms on repeated calls.
+
+---
+
+### 🔍 Screenshots
+
+#### Without Redis:
+
+![Without Redis](./assets/without%20redis.png)
+
+#### With Redis:
+
+![With Redis](./assets/with%20redis.png)
