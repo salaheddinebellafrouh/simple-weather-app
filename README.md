@@ -153,7 +153,7 @@ For backend scalability, we would transition to a microservices architecture wit
 
 ## API Performance Benchmark
 
-### 🧪 Testing Methodology
+###  Testing Methodology
 
 - Tool: **Chrome DevTools** → *Network tab*
 - Scenario: Fetched `/api/weather?lat=51.5074&lon=-0.1278` multiple times
