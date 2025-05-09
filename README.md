@@ -12,8 +12,8 @@ docker-compose --version
 
 2. Clone the repository:
 ```bash
-git clone <repository-url>
-cd <project-directory>
+git clone git@github.com:salaheddinebellafrouh/simple-weather-app.git
+cd simple-weather-app
 ```
 
 3. Start the application:
