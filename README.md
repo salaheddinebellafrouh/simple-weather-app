@@ -16,12 +16,7 @@ git clone <repository-url>
 cd <project-directory>
 ```
 
-3. Create a `.env.local` file with your OpenWeather API key:
-```env
-OPENWEATHER_API_KEY=your_api_key_here
-```
-
-4. Start the application:
+3. Start the application:
 ```bash
 docker-compose up --build
 ```
@@ -136,40 +131,9 @@ The application will be available at http://localhost:3000
 
 ## Scaling Strategy
 
-To scale this application for millions of daily users, we would implement a multi-tier architecture with the following components:
+This application can scale to millions of daily users through a combination of frontend and backend optimizations. On the frontend, we would deploy the Next.js application across multiple global regions using CDNs like Vercel or Cloudflare, implement static generation for common locations, and leverage edge caching for API responses. This approach minimizes latency and ensures fast page loads regardless of user location.
 
-1. **Frontend Scaling**
-   - Deploy Next.js application to multiple regions using a CDN (like Vercel or Cloudflare)
-   - Implement static page generation for common locations
-   - Use edge caching for API responses
-   - Deploy static assets (images, icons) to CDN
-
-2. **Backend Scaling**
-   - Split into microservices:
-     - Weather Service: Handles weather data fetching and caching
-     - Location Service: Manages location data and geocoding
-     - Cache Service: Manages Redis clusters
-   - Implement horizontal scaling for each service
-   - Use Kubernetes for container orchestration
-   - Implement service mesh for inter-service communication
-
-3. **Data Layer**
-   - Redis Cluster for distributed caching
-   - Implement Redis Sentinel for high availability
-   - Use Redis Cluster for sharding across multiple nodes
-   - Implement cache warming strategies
-
-4. **Infrastructure**
-   - Load balancers (e.g., AWS ALB) for traffic distribution
-   - Auto-scaling groups based on CPU/memory metrics
-   - Multi-region deployment for global availability
-   - Implement circuit breakers for external API calls
-
-5. **Monitoring and Optimization**
-   - Implement distributed tracing
-   - Set up real-time monitoring
-   - Use APM tools for performance tracking
-   - Implement rate limiting and DDoS protection
+For backend scalability, we would transition to a microservices architecture with dedicated Weather, Location, and Cache services deployed on Kubernetes for horizontal scaling. The data layer would utilize Redis Cluster with Sentinel for high availability, while load balancers, auto-scaling groups, and multi-region deployment would ensure the infrastructure can handle traffic spikes. Comprehensive monitoring and rate limiting would protect against potential system overloads and attacks.
 
 ## Troubleshooting
 
@@ -217,3 +181,26 @@ Redis caching significantly reduced response times from ~300ms to ~13ms on repea
 #### With Redis:
 
 ![With Redis](./assets/with%20redis.png)
+
+## Performance Analysis
+
+Performance testing conducted with Chrome DevTools shows significant improvements after implementing Redis caching:
+
+### Key Metrics Comparison
+
+| Metric | Before Optimization | After Optimization | Improvement |
+|--------|---------------------|-------------------|------------|
+| Total Duration | 19.97s | 4.77s | 76% reduction |
+| Script Processing | 728ms | 366ms | 50% reduction |
+| Rendering | 128ms | 51ms | 60% reduction |
+| API Response Time | ~314ms | ~13ms | 96% faster |
+
+### Performance Screenshots
+
+#### Before Optimization:
+![Before Optimization](./assets/without-redis.png)
+
+#### After Optimization:
+![After Optimization](./assets/with-redis.png)
+
+The implementation of Redis caching dramatically improved application responsiveness, with API response times reduced by ~96% on subsequent requests. Users experience significantly faster data loading and more responsive interactions throughout the application.
