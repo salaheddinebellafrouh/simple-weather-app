@@ -131,9 +131,9 @@ The application will be available at http://localhost:3000
 
 ## Scaling Strategy
 
-This application can scale to millions of daily users through a combination of frontend and backend optimizations. On the frontend, we would deploy the Next.js application across multiple global regions using CDNs like Vercel or Cloudflare, implement static generation for common locations, and leverage edge caching for API responses. This approach minimizes latency and ensures fast page loads regardless of user location.
+On the frontend, we would deploy the Next.js application across multiple global regions using CDNs like Vercel or Cloudflare, implement static generation for common locations, and leverage edge caching for API responses. This approach minimizes latency and ensures fast page loads regardless of user location.
 
-For backend scalability, we would transition to a microservices architecture with dedicated Weather, Location, and Cache services deployed on Kubernetes for horizontal scaling. The data layer would utilize Redis Cluster with Sentinel for high availability, while load balancers, auto-scaling groups, and multi-region deployment would ensure the infrastructure can handle traffic spikes. Comprehensive monitoring and rate limiting would protect against potential system overloads and attacks.
+For backend , we would transition to a microservices architecture with dedicated Weather, Location, and Cache services deployed on Kubernetes for horizontal scaling. The data layer would utilize Redis Cluster with Sentinel for high availability, while load balancers, auto-scaling groups, and multi-region deployment would ensure the infrastructure can handle traffic spikes. Comprehensive monitoring and rate limiting would protect against potential system overloads and attacks.
 
 ## Troubleshooting
 
